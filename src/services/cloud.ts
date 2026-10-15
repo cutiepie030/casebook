@@ -42,10 +42,10 @@ export async function replaceCache(raw: unknown) {
     await db.sessions.bulkPut(b.sessions);
   });
 }
-export async function readVault() {
+export async function readVault(metadataOnly = false) {
   const { data, error } = await cloud()
     .from('casebook_vaults')
-    .select('revision,payload')
+    .select(metadataOnly ? 'revision' : 'revision,payload')
     .maybeSingle();
   if (error) throw Error('无法连接私人空间，请检查网络后重试。');
   return data as { revision: number; payload: Backup | null } | null;
@@ -118,9 +118,9 @@ export class VaultSync {
         this.baseline = hash;
         await this.remember();
       } else {
-        const remote = await readVault();
+        const remote = await readVault(true);
         if (this.stopped) return;
-        if (remote && remote.revision !== this.revision && remote.payload) {
+        if (remote && remote.revision !== this.revision) {
           // An editor may be typing while the request is in flight. Never replace live forms.
           this.lastError = '其他设备有更新，请先下载备份，再重新登录载入最新内容。';
           this.report(this.lastError, true);

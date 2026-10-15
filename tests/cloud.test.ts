@@ -132,3 +132,8 @@ it('edits made during an in-flight upload remain pending for the next save', asy
   await sync.tick();
   expect(remote.payload?.docs[0].title).toBe('Second edit');
 });
+it('idle synchronization checks only metadata rather than downloading all private cases', async () => {
+  const sync = new VaultSync(vi.fn()); await sync.initialize();
+  mock.from.mockImplementationOnce(() => ({select:(fields:string)=>{expect(fields).toBe('revision');return {maybeSingle:async()=>({data:{revision:remote.revision},error:null})};}}));
+  await sync.tick(); expect(sync.lastError).toBe('');
+});
