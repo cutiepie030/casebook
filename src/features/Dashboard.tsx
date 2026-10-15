@@ -333,7 +333,7 @@ export function Dashboard({ docs, notify }: { docs: Doc[]; notify: (s: string) =
           <Link className="backup-mini" to="/settings">
             <CheckCircle2 size={17} />
             <div>
-              <strong>你的资料，留在本机</strong>
+              <strong>你的积累，随身可用</strong>
               <small>
                 {last
                   ? `上次备份：${new Date(last.value).toLocaleDateString('zh-CN')}`

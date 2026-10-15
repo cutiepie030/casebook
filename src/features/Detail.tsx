@@ -1,3 +1,4 @@
+import { registerEditor } from '../services/editorFlush';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useSearchParams, useNavigate, Link, useBlocker } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
@@ -114,6 +115,7 @@ function DetailBody({
     });
     return chain.current;
   }, [notify]);
+  useEffect(() => registerEditor(save), [save]);
   const blocker = useBlocker(dirty);
   useEffect(() => {
     if (blocker.state === 'blocked') {

@@ -167,7 +167,7 @@ function Shell() {
           </NavLink>
           <div className="local-status">
             <span />
-            <span>本地空间 · 资料仅你可见</span>
+            <span>私人空间 · 云端保存</span>
             <HardDrive size={13} />
           </div>
         </div>
@@ -191,7 +191,7 @@ function Shell() {
           </div>
           <div>
             <span className="topbar-status">
-              <span /> 本地已就绪
+              <span /> 私人案例库
             </span>
             <button className="icon-btn" aria-label="全局搜索" onClick={() => setSearchOpen(true)}>
               <Search size={18} />

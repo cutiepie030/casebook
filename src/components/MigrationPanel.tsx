@@ -27,7 +27,7 @@ export function MigrationPanel() {
         );
         channel.current = '';
         setStatus(
-          `迁移完成：${backup.docs.filter((d) => d.kind === 'case' && !d.deletedAt && !d.demo).length}个案例，资料已保存到此浏览器。`,
+          `迁移完成：${backup.docs.filter((d) => d.kind === 'case' && !d.deletedAt && !d.demo).length}个案例，资料已载入，顶部显示“已保存到私人云端”后即可在其他设备登录查看。`,
         );
       } catch {
         setStatus('资料未能迁移，原有内容保留。可使用下方 JSON 备份导入。');
@@ -64,8 +64,8 @@ export function MigrationPanel() {
       </div>
       <p>
         先在 Mac 启动本地
-        CASEBOOK，再点击下方按钮，在新窗口确认。资料仅通过浏览器窗口传递，保存于当前浏览器，不上传
-        GitHub，也不自动同步到其他设备。
+        CASEBOOK，再点击下方按钮，在新窗口确认。资料将复制到你登录的私人云端空间，不会写入公开
+        GitHub 仓库。
       </p>
       <button className="btn primary" onClick={start}>
         <ArrowUpRight size={16} />

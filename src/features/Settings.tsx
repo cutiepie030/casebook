@@ -128,13 +128,12 @@ export function Settings({ docs, notify }: { docs: Doc[]; notify: (s: string) =>
       <section className="panel storage-panel">
         <div className="section-title">
           <h2>
-            <HardDrive size={19} /> 本地存储状态
+            <HardDrive size={19} /> 浏览器工作缓存
           </h2>
-          <Badge tone="green">IndexedDB · 本机</Badge>
+          <Badge tone="green">私人云端 + 工作缓存</Badge>
         </div>
         <p>
-          数据保存在当前浏览器配置的 IndexedDB 数据库 <code>casebook</code>
-          ，不在项目文件夹里。正常刷新和重启后会保留；清除网站数据、删除浏览器配置可能导致丢失。
+          登录后从私人数据库载入资料。编辑先保存在当前页面缓存，再自动同步到云端；请确认顶部显示“已保存到私人云端”后关闭页面。退出登录会清除此页面缓存。
         </p>
         <div className="storage-facts">
           <div>
@@ -174,8 +173,7 @@ export function Settings({ docs, notify }: { docs: Doc[]; notify: (s: string) =>
           申请浏览器持久存储
         </button>
         <div className="notice">
-          本地恢复快照与原数据在同一浏览器，不能替代下载到磁盘的 JSON
-          备份。换浏览器或换电脑前，请先导出，再在新环境导入。
+          换设备后登录同一账号即可载入已同步的资料。导入前快照只保存在当前页面缓存；建议定期下载独立 JSON 备份。
         </div>
       </section>
       <section className="panel storage-panel">
@@ -266,8 +264,7 @@ export function Settings({ docs, notify }: { docs: Doc[]; notify: (s: string) =>
       <section className="panel storage-panel">
         <h2>关于 CASEBOOK</h2>
         <p>
-          版本 1.1 · 本地优先，无账号，无云端服务。首次启动包含少量 Demo
-          假设案例，仅用于体验；你可以逐条移入回收站，清空后不会自动重新生成。
+          版本 2.0 · 私人账号登录，云端保存。仅受邀账号可访问；不开放注册。
         </p>
         <p>
           使用建议：先建立真实案例，再关联问题；按公司整理备战内容，面试前用速记复习，面试后记录复盘。任何未经核实的数据都应保持“待核实”或“假设案例”状态。

@@ -18,4 +18,10 @@ class CasebookDB extends Dexie {
   }
 }
 export { CasebookDB };
-export const db = new CasebookDB();
+// Isolate live editors in different tabs; retain a tab's pending edits across reloads.
+const tabId =
+  typeof sessionStorage === 'undefined'
+    ? 'test'
+    : sessionStorage.getItem('casebook-tab') || crypto.randomUUID();
+if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('casebook-tab', tabId);
+export const db = new CasebookDB('casebook-private-' + tabId);
